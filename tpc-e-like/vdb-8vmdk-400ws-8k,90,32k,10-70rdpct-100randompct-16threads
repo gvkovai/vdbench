@@ -1,0 +1,33 @@
+
+*SD: Storage Definition
+*WD: Workload Definition
+*RD: Run Definition
+
+sd=sd1,lun=/dev/sda,size=50G,openflags=o_direct,threads=16
+sd=sd2,lun=/dev/sdb,size=50G,openflags=o_direct,threads=16
+sd=sd3,lun=/dev/sdc,size=50G,openflags=o_direct,threads=16
+sd=sd4,lun=/dev/sdd,size=50G,openflags=o_direct,threads=16
+sd=sd5,lun=/dev/sde,size=50G,openflags=o_direct,threads=16
+sd=sd6,lun=/dev/sdf,size=50G,openflags=o_direct,threads=16
+sd=sd7,lun=/dev/sdg,size=50G,openflags=o_direct,threads=16
+sd=sd8,lun=/dev/sdh,size=50G,openflags=o_direct,threads=16
+
+*DB File read/write
+wd=wd1,sd=sd1,xfersize=(8K,90,32k,10),rdpct=70,seekpct=100
+wd=wd2,sd=sd2,xfersize=(8K,90,32k,10),rdpct=70,seekpct=100
+wd=wd3,sd=sd3,xfersize=(8K,90,32k,10),rdpct=70,seekpct=100
+wd=wd4,sd=sd4,xfersize=(8K,90,32k,10),rdpct=70,seekpct=100
+wd=wd5,sd=sd5,xfersize=(8K,90,32k,10),rdpct=70,seekpct=100
+wd=wd6,sd=sd6,xfersize=(8K,90,32k,10),rdpct=70,seekpct=100
+wd=wd7,sd=sd7,xfersize=(8K,90,32k,10),rdpct=70,seekpct=100
+wd=wd8,sd=sd8,xfersize=(8K,90,32k,10),rdpct=70,seekpct=100
+
+*The elapsed value below can be overridden in the test config.
+rd=tpc-e-like,wd=wd*,iorate=max,elapsed=3600
+
+eof
+
+This config file simulates workload of 70% reads and 30% writes
+with 100% random of 90% 8k and 10% 32k of transfer sizes.
+
+Each VM consists of 8 vdisks with size of 50G each.

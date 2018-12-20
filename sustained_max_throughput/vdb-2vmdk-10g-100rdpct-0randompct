@@ -1,0 +1,16 @@
+
+*SD: Storage Definition
+*WD: Workload Definition
+*RD: Run Definition
+
+sd=sd1,lun=/dev/sda,size=10G,openflags=o_direct
+sd=sd2,lun=/dev/sdb,size=10G,openflags=o_direct
+
+*The elapsed value below can be overridden in the test config.
+rd=seq-reads,sd=*,forxfersize=(512k,1m),rdpct=100,seekpct=0,iorate=max,elapsed=300,forthreads=(4,8)
+
+eof
+
+This config file simulates workload of 100% seq reads.
+
+Each VM consists of 2 vdisks with size of 10G each.

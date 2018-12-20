@@ -1,0 +1,25 @@
+
+*SD: Storage Definition
+*WD: Workload Definition
+*RD: Run Definition
+
+sd=sd1,lun=/dev/sda,size=256G,openflags=o_direct,threads=32
+sd=sd2,lun=/dev/sdb,size=256G,openflags=o_direct,threads=32
+sd=sd3,lun=/dev/sdc,size=256G,openflags=o_direct,threads=32
+sd=sd4,lun=/dev/sdd,size=256G,openflags=o_direct,threads=32
+
+*DB File Seq 1M Writes
+wd=wdsw1,sd=sd1,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw2,sd=sd2,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw3,sd=sd3,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw4,sd=sd4,xfersize=(1M,100),rdpct=0,seekpct=0
+
+*The elapsed value below can be overridden in the test config.
+rd=1tb-ingestion,wd=wd*,iorate=max,elapsed=7200,maxdata=1024g
+
+eof
+
+This config file simulates big data ingestion type workload of 
+sequential 1M writes of the size 1TB in total. 
+
+Each VM consists of 4 vdisks with size of 256G each.

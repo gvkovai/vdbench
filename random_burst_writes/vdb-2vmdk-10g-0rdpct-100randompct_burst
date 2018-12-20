@@ -1,0 +1,16 @@
+
+*SD: Storage Definition
+*WD: Workload Definition
+*RD: Run Definition
+
+sd=sd1,lun=/dev/sda,size=10G,openflags=o_direct
+sd=sd2,lun=/dev/sdb,size=10G,openflags=o_direct
+
+*The elapsed value below can be overridden in the test config.
+rd=random-writes,sd=*,forxfersize=(8k,16k,32k),rdpct=0,seekpct=100,iorate=max,elapsed=60,pause=120,forthreads=(8,16,32,64)
+
+eof
+
+This config file simulates workload of 100% random writes.
+
+Each VM consists of 2 vdisks with size of 10G each.

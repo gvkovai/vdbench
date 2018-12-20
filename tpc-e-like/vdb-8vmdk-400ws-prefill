@@ -1,0 +1,33 @@
+
+*SD: Storage Definition
+*WD: Workload Definition
+*RD: Run Definition
+
+sd=sd1,lun=/dev/sda,size=50G,openflags=o_direct,threads=16
+sd=sd2,lun=/dev/sdb,size=50G,openflags=o_direct,threads=16
+sd=sd3,lun=/dev/sdc,size=50G,openflags=o_direct,threads=16
+sd=sd4,lun=/dev/sdd,size=50G,openflags=o_direct,threads=16
+sd=sd5,lun=/dev/sde,size=50G,openflags=o_direct,threads=16
+sd=sd6,lun=/dev/sdf,size=50G,openflags=o_direct,threads=16
+sd=sd7,lun=/dev/sdg,size=50G,openflags=o_direct,threads=16
+sd=sd8,lun=/dev/sdh,size=50G,openflags=o_direct,threads=16
+
+*DB File Seq 1M Writes
+wd=wdsw1,sd=sd1,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw2,sd=sd2,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw3,sd=sd3,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw4,sd=sd4,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw5,sd=sd5,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw6,sd=sd6,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw7,sd=sd7,xfersize=(1M,100),rdpct=0,seekpct=0
+wd=wdsw8,sd=sd8,xfersize=(1M,100),rdpct=0,seekpct=0
+
+*The elapsed value below can be overridden in the test config.
+rd=prefill,wd=wd*,iorate=max,elapsed=3600,maxdata=400g
+
+eof
+
+This config file simulates workload of sequential 1M writes.
+Primarily used to prefill the disks.
+
+Each VM consists of 8 vdisks with size of 50G each.
